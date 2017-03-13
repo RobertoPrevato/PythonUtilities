@@ -23,8 +23,8 @@ class FriendlyEncoder(json.JSONEncoder):
         if isinstance(obj, Decimal):
             #return float(obj)
             return float("{0:.4f}".format(obj))
-        if hasattr(obj, "to_dict") and callable(obj.to_dict):
-            return obj.to_dict()
+        if hasattr(obj, "to_json") and callable(obj.to_json):
+            return obj.to_json()
         # Let the base class default method raise the TypeError
         return json.JSONEncoder.default(self, obj)
 

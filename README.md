@@ -1,2 +1,2 @@
-# PythonUtilities
-Personal utilities for Python
+# Python Utilities
+Personal utilities and useful functions for Python projects.

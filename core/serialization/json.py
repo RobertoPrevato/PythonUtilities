@@ -23,8 +23,8 @@ class FriendlyEncoder(json.JSONEncoder):
         if isinstance(obj, Decimal):
             #return float(obj)
             return float("{0:.4f}".format(obj))
-        if hasattr(obj, "to_json") and callable(obj.to_json):
-            return obj.to_json()
+        if hasattr(obj, "to_dict") and callable(obj.to_dict):
+            return obj.to_dict()
         # Let the base class default method raise the TypeError
         return json.JSONEncoder.default(self, obj)
 
@@ -53,6 +53,8 @@ json.dumps = serialize
 
 
 class JsonSerializable:
-
-    def to_json(self):
-        return serialize(self.__dict__)
+    """
+    An object that can be serialized to JSON returning its underlying __dict__
+    """
+    def to_dict(self):
+        return self.__dict__
